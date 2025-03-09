@@ -13,11 +13,15 @@ export function FetchWeather() {
 	const [weatherInfo, setWeatherInfo] = useState<WeatherInfo | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
-	// http://weather.time:8080/controller/greeting
+	
+	const url = 'http://localhost:8080/controller/greeting'
+	const url2 = 'http://back:8080/controller/greeting'
+	const url3 = 'http://weather.time:8080/controller/greeting'
+
 	useEffect(() => {
 		const fetchWeather = async () => {
 		  try {
-			const response = await axios.get('http://localhost:8080/controller/greeting', {
+			const response = await axios.get(url, {
 			  params: {
 				code: 'Novosibirsk'
 			  }

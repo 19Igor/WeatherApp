@@ -8,7 +8,6 @@ function App() {
     <div>
       <Image></Image>
       <TimeSection></TimeSection>
-      {/* <Controller></Controller> */}
       <FetchWeather></FetchWeather>
     </div>
   );
