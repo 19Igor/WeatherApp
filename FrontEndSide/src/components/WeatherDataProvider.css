@@ -1,0 +1,12 @@
+.weatherInfo {
+	display: grid;
+	font-family: 'Zapfino', sans-serif; /* Укажи желаемый шрифт */
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;	
+}
+
+.h2Header {
+	display: grid;
+	margin-top: 40px;
+}

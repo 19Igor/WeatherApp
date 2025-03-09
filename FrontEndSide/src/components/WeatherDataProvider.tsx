@@ -3,6 +3,7 @@ import React from "react";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { urls } from '../constants';
+import "./WeatherDataProvider.css"
 
 
 interface WeatherInfo {
@@ -19,7 +20,6 @@ export function FetchWeather() {
 	
 	const params = useParams();
 	const city = params.city;
-	
 
 	useEffect(() => {
 		const fetchWeather = async () => {
@@ -48,14 +48,14 @@ export function FetchWeather() {
 	  return <div>Error: {error}</div>;
 	}
 	return (
-		<div>
-		  <h1>Weather in Novosibirsk</h1>
+		<div className="weatherInfo">
+		  <h2 className="h2Header">Weather in {city}</h2>
 		  {weatherInfo ? (
 			<div>
 			  <p>Temperature: {weatherInfo.temperature}°C</p>
-			  <p>Feels like: {weatherInfo.feelLikeTemp}°C</p>
-			  <p>Clouds: {weatherInfo.clouds}</p>
-			  <p>Wind speed: {weatherInfo.windSpeed} m/s</p>
+			  <p>Feels like:  {weatherInfo.feelLikeTemp}°C</p>
+			  <p>Clouds:      {weatherInfo.clouds}</p>
+			  <p>Wind speed:  {weatherInfo.windSpeed} m/s</p>
 			</div>
 		  ) : (
 			<p>No weather data available</p>
