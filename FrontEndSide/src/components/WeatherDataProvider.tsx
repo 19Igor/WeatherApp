@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
+import { useParams } from 'react-router-dom';
+import { urls } from '../constants';
+
 
 interface WeatherInfo {
 	temperature: number;
@@ -14,16 +17,16 @@ export function FetchWeather() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	
-	const url = 'http://localhost:8080/controller/greeting'
-	const url2 = 'http://back:8080/controller/greeting'
-	const url3 = 'http://weather.time:8080/controller/greeting'
+	const params = useParams();
+	const city = params.city;
+	
 
 	useEffect(() => {
 		const fetchWeather = async () => {
 		  try {
-			const response = await axios.get(url, {
+			const response = await axios.get(urls.local, {
 			  params: {
-				code: 'Novosibirsk'
+				code: city
 			  }
 			});
 			setWeatherInfo(response.data);
@@ -35,7 +38,7 @@ export function FetchWeather() {
 		};
 		
 		fetchWeather();
-	}, []);
+	}, [city]);
   
 	if (loading) {
 	  return <div>Loading...</div>;
