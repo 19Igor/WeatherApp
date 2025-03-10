@@ -16,7 +16,7 @@ public class Weather {
   }
 
   @GetMapping("/greeting")
-  @CrossOrigin(origins = "http://weather.time:3000")
+  @CrossOrigin(origins = "http://weather.time")
   public WeatherInfo getWeatherInfoByCode(@RequestParam(value = "code", defaultValue = "no") String cityName,
                                           HttpServletRequest request){
     // Получаем информацию о запросе
