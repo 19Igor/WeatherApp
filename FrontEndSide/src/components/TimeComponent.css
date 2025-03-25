@@ -1,0 +1,11 @@
+h3 {
+	font-family: 'Zapfino', sans-serif; /* Укажи желаемый шрифт */
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+}
+
+.timeAndDate {
+	display: grid;
+	margin-top: 50px;
+}

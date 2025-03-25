@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
+import { useParams } from 'react-router-dom';
+import { urls } from '../constants';
+import "./WeatherDataProvider.css"
+
 
 interface WeatherInfo {
 	temperature: number;
@@ -13,13 +17,16 @@ export function FetchWeather() {
 	const [weatherInfo, setWeatherInfo] = useState<WeatherInfo | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
-	// http://weather.time:8080/controller/greeting
+	
+	const params = useParams();
+	const city = params.city;
+
 	useEffect(() => {
 		const fetchWeather = async () => {
 		  try {
-			const response = await axios.get('http://localhost:8080/controller/greeting', {
+			const response = await axios.get(urls.server, {
 			  params: {
-				code: 'Novosibirsk'
+				code: city
 			  }
 			});
 			setWeatherInfo(response.data);
@@ -31,7 +38,7 @@ export function FetchWeather() {
 		};
 		
 		fetchWeather();
-	}, []);
+	}, [city]);
   
 	if (loading) {
 	  return <div>Loading...</div>;
@@ -41,14 +48,14 @@ export function FetchWeather() {
 	  return <div>Error: {error}</div>;
 	}
 	return (
-		<div>
-		  <h1>Weather in Novosibirsk</h1>
+		<div className="weatherInfo">
+		  <h2 className="h2Header">Weather in {city}</h2>
 		  {weatherInfo ? (
 			<div>
 			  <p>Temperature: {weatherInfo.temperature}°C</p>
-			  <p>Feels like: {weatherInfo.feelLikeTemp}°C</p>
-			  <p>Clouds: {weatherInfo.clouds}</p>
-			  <p>Wind speed: {weatherInfo.windSpeed} m/s</p>
+			  <p>Feels like:  {weatherInfo.feelLikeTemp}°C</p>
+			  <p>Clouds:      {weatherInfo.clouds}</p>
+			  <p>Wind speed:  {weatherInfo.windSpeed} m/s</p>
 			</div>
 		  ) : (
 			<p>No weather data available</p>

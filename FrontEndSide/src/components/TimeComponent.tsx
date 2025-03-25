@@ -1,12 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import "./TimeComponent.css"
 
-// cmd + shift + E
 
 export function TimeSection() {
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  document.title = "It's my Life";
+  document.title = "You're not able to controll weather but you can controll your life.";
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -25,10 +25,10 @@ export function TimeSection() {
   };
 
   return (
-    <>
+    <div className="timeAndDate">
     {/* у страницы может быть только один уникальный h1 */}
-      <h2>Current date {displayDate(currentTime)}</h2>
-      <h2>Current time {displayTime(currentTime)}</h2>
-    </>
+      <h3>Current date:  {displayDate(currentTime)}</h3>
+      <h3>Current time:  {displayTime(currentTime)}</h3>
+    </div>
   );
 }

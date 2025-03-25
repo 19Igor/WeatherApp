@@ -1,0 +1,5 @@
+.center-container {
+	display: grid;
+	place-items: start center; /* Центрирование по горизонтали и вертикали */
+}
+
