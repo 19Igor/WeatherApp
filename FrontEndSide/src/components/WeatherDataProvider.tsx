@@ -24,7 +24,7 @@ export function FetchWeather() {
 	useEffect(() => {
 		const fetchWeather = async () => {
 		  try {
-			const response = await axios.get(urls.local, {
+			const response = await axios.get(urls.server, {
 			  params: {
 				code: city
 			  }

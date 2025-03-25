@@ -3,18 +3,18 @@ services:
   api:
     image: back
     container_name: back
-    build: 
+    build:
       context: ./BackEndSide
       dockerfile: dockerfile
     ports:
       - '8080:8080'
     networks:
       - app-network
-      
+
   front:
     image: web
     container_name: web
-    build: 
+    build:
       context: ./FrontEndSide
       dockerfile: ./dockerfile
     ports:
@@ -27,19 +27,25 @@ services:
       - app-network
     depends_on:
       - api
-  
+
   nginx:
-    image: nginx:latest
+    image: nginx
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: ./nginx_dockerfile
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt
     depends_on:
       - front
       - api
     networks:
       - app-network
-  
+
 networks:
   app-network:
     driver: bridge
